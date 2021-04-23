@@ -9,8 +9,9 @@ class Main extends Page {
     get tableActive () { return $('.thin'); }
 
     async findAllUsers() {
-        const str_active_users = await this.tableActive();
-        let array_of_users = str_active_users.split(" , ");
+        const active_users = await this.tableActive;
+        let str_active_users = await active_users.getText();
+        let array_of_users = await str_active_users.split(' , ');
 
         return array_of_users;
     }

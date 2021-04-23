@@ -1,5 +1,7 @@
 const { Given, When, Then } = require('@cucumber/cucumber');
 
+const assert = require('assert');
+
 ///* Log in with exicting user name and password 
 
 const LoginPage = require('../../pageobjects/login.page.js');
@@ -19,5 +21,6 @@ Then(/^I should see a message on the main page saying (.+)$/, async (message) =>
 
     const hi_text = await LoginPage.loginText;
     await hi_text.waitForDisplayed({ timeout: 10000 });
-    await hi_text.getText() === message;
+    await assert.strictEqual(await hi_text.getText(), ' '+message)
+    
 });

@@ -1,5 +1,6 @@
 const { Given, When, Then } = require('@cucumber/cucumber');
 
+const assert = require('assert');
 ///* Log in with wrong and not existing user name and password 
 
 const LoginPage = require('../../pageobjects/login.page.js');
@@ -18,5 +19,5 @@ Then(/^I should see a message on the main page saying (.+)$/, async (message) =>
     //Compare massege on the main page with text from Gherkin
     const wrong_text = await LoginPage.wrongText;
     await wrong_text.waitForDisplayed({ timeout: 10000 });
-    await wrong_text.getText() === message;
+    await assert.strictEqual(await wrong_text.getText(), message)
 });

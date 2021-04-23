@@ -14,6 +14,9 @@ class Login extends Page {
     //Get text after login
     get loginText () {return $('.maintitle')}
 
+    //Get text after wrong login
+    get wrongText() {return $('.postcolor')}
+
     /**
      * a method to encapsule automation code to interact with the page
      * e.g. to login using username and password
@@ -23,10 +26,6 @@ class Login extends Page {
         await (await this.inputPassword).setValue(password);
         await (await this.btnSubmit).click();
     }
-
-    //async getHi () {
-        //await (await this.loginText).getText();
-    //}
 
     /**
      * overwrite specifc options to adapt it to page object

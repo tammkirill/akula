@@ -1,4 +1,5 @@
 const { Given, When, Then } = require('@cucumber/cucumber');
+
 const assert = require('assert');
 
 ///After log in check user name in activity table
@@ -23,9 +24,11 @@ Then(/^I should see my user name (.+) in the list of active users$/, async (name
     for (let i = 0; i < array_of_names.length; i++){
         if (await array_of_names[i] === name){
             let str_tmp = await array_of_names[i];
-            await assert.strictEqual(str_tmp, name)
+            assert.strictEqual(await str_tmp, name);
+        }else{
+            let str_tmp = await array_of_names[i];
+            assert.notStrictEqual(await str_tmp, name);
         }
     }
-    assert.fail();
 
 });

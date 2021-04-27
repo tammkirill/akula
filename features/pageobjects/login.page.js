@@ -17,6 +17,9 @@ class Login extends Page {
     //Get text after wrong login
     get wrongText() {return $('.postcolor')}
 
+    //Get check Stealth
+    get checkBox() { return $('[type=checkbox]') }
+
     /**
      * a method to encapsule automation code to interact with the page
      * e.g. to login using username and password
@@ -25,6 +28,10 @@ class Login extends Page {
         await (await this.inputUsername).setValue(username);
         await (await this.inputPassword).setValue(password);
         await (await this.btnSubmit).click();
+    }
+
+    async checkStealth() {
+        await (await this.checkBox).click();
     }
 
     /**
